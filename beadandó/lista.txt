@@ -1,0 +1,6 @@
+Vezetéknélküli hálózatok kialakítására asztali és hordozható számítógépek között, illetve csak asztali gépek között kis területen, ha nincs szükség nagy sávszélességre
+Számítógép-perifériák csatlakoztatására nyomtatók, billentyűzetek, egerek esetében
+Fájlok és adatok átvitelére és szinkronizálására személyi digitális asszisztensek (PDA-k, mobiltelefonok és a számítógép) között
+Egyes digitális zenelejátszók, fényképezőgépek és számítógép között
+Autóskészletek és fülhallgatók csatlakoztatására mobiltelefonokhoz
+Orvosi és GPS-készülékek
