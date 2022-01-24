@@ -17,7 +17,7 @@ function App() {
 
   return (
     <Container className="border bg-light text-center">
-      <h1>My first ReactApp</h1>
+      <h1>My first React App</h1>
       <Counter />
       <Toggle />
       <TodoList data={data} />
