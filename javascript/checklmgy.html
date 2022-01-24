@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>check image</title>
+</head>
+<body>
+    
+    <img src="" alt="">
+
+    <script>
+        let img=new Image();
+        let url='https://picsum.photos/id/147/200'
+        img.src=url
+        img.addEventListener('load',()=>document.querySelector('img').src=img.src)
+        img.addEventListener('error',()=>console.log('nincs kép'))
+    </script>
+
+</body>
+</html>

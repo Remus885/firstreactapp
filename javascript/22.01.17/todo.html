@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <Script src="https://use.fontawesome.com/549550e2c8.js"></Script>
+    <title>Teendők</title>
+    <style>
+        .container {
+            height: 100vw;
+        }
+        ul{
+            list-style-type: none;
+        }
+        li{
+            width: 100%;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container bg-light">
+        <div class="row justify-content-center h-100">
+            <div class="col-md-6 col-12 bg-info text-white">
+                <form class="form-inline mt-2">
+                    <input class="form-control w-75" type="text" id="todo_item" placeholder="...add todo...">
+                    <div class="w-25">
+                        <div class="btn rounded border bg-success" onclick="addTodo()">
+                            <i class="fa fa-plus-square fa-2x"></i>
+                        </div>
+                        <div class="btn rounded border bg-danger" onclick="clearAll()">
+                            <i class="fa fa-trash fa-2x"></i>
+                        </div>
+                    </div>
+                </form>
+
+                <ul class="list"></ul>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        const checkIcon='<i class="fa fa-check-square bg-light border border-light rounded p-1 m-1" onclick="toggle(this)"></i>'
+        const delIcon='<i class="fa fa-trash text-danger bg-light border border-light rounded p-1 m-1" onclick="del(this)"></i>'
+
+        let myTodos=localStorage.getItem('myTodos') ? JSON.parse(localStorage['myTodos']) : []
+
+        //console.log(myTodos)
+
+        function renderTodos(arr){
+            document.querySelector('.list').innerHTML=arr.reduce((acc,val)=>acc+'<li>'+checkIcon+'<span>'+val+'</span>'+delIcon+'</li>','')
+        }
+        renderTodos(myTodos)
+
+        const addTodo = () =>{
+            const todo_item=document.getElementById('todo_item').value
+            if(todo_item.length>0){
+                console.log(todo_item)
+                myTodos.push(todo_item)
+                document.getElementById('todo_item').value=''
+                localStorage['myTodos']=JSON.stringify(myTodos)
+                document.querySelector('.list').innerHTML+='<li>'+checkIcon+'<span>'+todo_item+'</span>'+delIcon+'</li>'
+            }
+        }
+
+        const clearAll=()=>{
+            localStorage.removeItem('myTodos')
+            //location.reload() //az egész oldal újratöltődik
+            document.querySelector('.list').innerHTML=''
+        }
+
+        const del=(obj)=>{
+            console.log(obj.previousElementSibling.innerHTML)
+            const index=myTodos.indexOf(obj.previousElementSibling.innerText)
+            console.log('index= ',index)
+            if(index>-1){
+                myTodos.splice(index, 1)
+                localStorage['myTodos']=JSON.stringify(myTodos)
+                renderTodos(myTodos)
+            }
+        }
+
+        const toggle=(obj)=>{
+            console.log(obj.nextElementSibling.innerText,obj.classList.contains('text-success'))
+            if(!obj.classList.contains('text-success')){
+                obj.classList.add('text-success')
+                obj.nextElementSibling.style.textDecoration="line-through"
+            }else{
+                obj.classList.remove('text-success')
+                obj.nextElementSibling.style.textDecoration="none"
+            }
+        }
+    </script>
+</body>
+</html>

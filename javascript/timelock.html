@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Időzár</title>
+</head>
+<body onload="window.setTimeout('getSeconds()',1)">
+    <p>Az oldalon eltöltött idő : <span id='timeSpent' onchange="check(this)"></span></p>
+
+    <script>
+        let startDate = new Date();
+        console.log(startDate.getTime());
+
+        const initStopwatch=()=>{
+            let myTime=new Date();
+            return myTime.getTime()-startDate.getTime();
+        }
+
+        const getSeconds=()=>{
+            let sec=Math.round(initStopwatch()/1000);
+            document.getElementById('timeSpent').innerHTML=sec;
+            document.getElementById('timeSpent').dispatchEvent(new Event('change'));
+            window.setTimeout('getSeconds()',1000);
+        }
+
+        function check(obj){
+            console.log('ok' ,obj.textContent);
+            if(parseInt(obj.textContent)>6){
+                alert('időzár : 5 másodperc')
+                window.close();
+            }
+        }
+    </script>
+</body>
+</html>

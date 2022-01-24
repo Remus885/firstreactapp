@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reguláris kifejezések</title>
+</head>
+<body>
+    <script>
+        let sz1=123456
+        let reg=/\d/        //van-e számjegy
+        console.log(sz1,reg.test(sz1))
+
+        let sz2="123654"
+        console.log(sz2,reg.test(sz2))
+        
+        let sz3="123xcb654"
+        console.log(sz3,reg.test(sz3))
+
+        let sz4="xcb"
+        console.log(sz4,reg.test(sz4))
+
+        reg=/\D/             //Nem számjegy
+        console.log(sz2,reg.test(sz2))
+        console.log(sz3,reg.test(sz3))
+
+        reg=/\d+5/          //van-e benne 5 számjegy
+        console.log(sz2,reg.test(sz2))
+        console.log(sz3,reg.test(sz3))
+
+        reg=/^\d+$/         //Csak számjegyek
+        console.log(sz2,reg.test(sz2))
+        console.log(sz3,reg.test(sz3))
+
+        // /g kapcsoló
+        let tel="06-30 111-56-50"
+        reg=/[\-\s]/g
+        console.log(tel, tel.replace(reg,""))
+
+
+
+    </script>
+</body>
+</html>

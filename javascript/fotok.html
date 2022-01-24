@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <title>Fotók</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Fotók dinamikus megjelenítése JS-el</h1>
+        <input type="number" name="" id="nr" placeholder="hány darab képet szeretne látni?">
+        <button onclick="show()">klikkelj</button>
+
+        <div class="row" id="fotok"></div>
+    </div>
+    
+    <script>
+        function myRand(min,max){
+            return Math.floor(Math.random()*(max-min)+min)
+        }
+        function show(){
+            document.getElementById('fotok').innerHTML=''
+            let nr=parseInt(document.getElementById('nr').value)
+            console.log(nr)
+            for(let i=0; i<nr; i++){
+                let img=document.createElement('img')
+                let randomNr=myRand(1,100)
+                let url=`https://picsum.photos/id/${randomNr}/200`
+                img.src=url
+                img.addEventListener('error',()=>{
+                    let randomNr=myRand(1,100)
+                    let url=`https://picsum.photos/id/${randomNr}/200`
+                    img.src=url
+                })
+                img.classList.add('img-fluid','img-thumbnail')
+                let div=document.createElement('div')
+                div.classList.add('col-6','col-md-3','col-lg-2','mb-2')
+                document.getElementById('fotok').appendChild(div).appendChild(img)
+            }    
+
+        console.log(document.images.length)
+        for(let obj of document.images)
+            obj.addEventListener('click',()=>window.open(obj.src.slice(0,-3)+"600"))        
+        }
+    </script>
+
+</body>
+</html>

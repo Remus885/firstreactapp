@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Objektumok</title>
+</head>
+  
+<body>
+<table>
+        <thead>
+            <th>Id</th>
+            <th>Vezetéknév</th>
+            <th>Keresztnév</th>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+<hr>
+        <table>
+            <thead>
+                <th>Id</th>
+                <th>Vezetéknév</th>
+                <th>Keresztnév</th>
+            </thead>
+            <tbody id="tbl2"></tbody>
+        </table>
+<hr>
+            <table>
+                <thead>
+                    <th>Id</th>
+                    <th>Vezetéknév</th>
+                    <th>Keresztnév</th>
+                </thead>
+                <tbody id="tbl3"></tbody>
+            </table>
+<hr>
+<input type="text" name="" id="szoveg" placeholder="Írd a be a nevet/névrészletet amit keresel!" onkeyup="myFilter(this)">
+<hr>
+            <table>
+                <caption>Egyedi értékek</caption>
+                <thead>
+                    <th>Id</th>
+                    <th>Vezetéknév</th>
+                    <th>Keresztnév</th>
+                </thead>
+                <tbody id="tbl4"></tbody>
+            </table>
+
+
+
+    <script>
+        let pers=[
+            { "id":1,
+            "vnev": "Nagy",
+            "knev": "Péter",
+            },
+            { "id":2,
+            "vnev": "Kiss",
+            "knev": "Viktória",
+            },
+            { "id":3,
+            "vnev": "Pál",
+            "knev": "Marci",
+            },
+            { "id":4,
+            "vnev": "Király",
+            "knev": "Gyula",
+            },
+            { "id":5,
+            "vnev": "Kerekes",
+            "knev": "Győző",
+            },
+            { "id":2,
+            "vnev": "Kiss",
+            "knev": "Viktória",
+            }]
+
+            const tblRow=(a,b,c)=>{
+               return `<tr><td>${a}</td><td>${b}</td><td>${c}</td>`
+            }
+
+            let tblStr=""
+            for(let obj of pers){
+                //console.log(obj.knev);
+                tblStr+=tblRow(obj.id, obj.vnev, obj.knev)
+            }
+            //console.log(tblStr)
+            document.querySelector('tbody').innerHTML=tblStr
+            //más módszer
+
+            document.querySelector('#tbl2').innerHTML=pers.map((obj)=>tblRow(obj.id, obj.vnev, obj.knev)).join('')
+            document.querySelector('#tbl3').innerHTML=pers.reduce((acc,obj)=>acc+tblRow(obj.id, obj.vnev, obj.knev) ,'')
+            
+            let arr=[]
+            for(let item of pers){
+                if(!arr.find(obj=>obj.id==item.id))
+                    arr.push(item)
+            }
+            document.querySelector('#tbl4').innerHTML=arr.reduce((acc,obj)=>acc+tblRow(obj.id, obj.vnev, obj.knev) ,'')
+            //keyup :
+            function myFilter(obj){
+                console.log(obj.value)
+                let str=obj.value
+                let szurtTomb=arr.filter((o)=>o.vnev.toLowerCase().includes(str.toLowerCase()) || o.knev.toLowerCase().includes(str.toLowerCase()))
+                document.querySelector('#tbl4').innerHTML=szurtTomb.reduce((acc,obj)=>acc+tblRow(obj.id, obj.vnev, obj.knev) ,'')
+            }
+            
+            
+    </script>
+    
+</body>
+</html>

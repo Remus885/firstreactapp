@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie</title>
+</head>
+<body>
+    <h1></h1>
+    <script>
+        //console.log(document.cookie)
+        //document.cookie="userName=KAM; max-age=+30*24*60*60"
+        //document.cookie="orderId=42; max-age=+60"
+
+        const cookieStorage={
+            getItem: (key)=>{
+                const cookies=document.cookie.split(";")
+                    .map(item=>item.split("="))
+                    .reduce((obj,[key,value])=>({...obj,[key.trim()]:value}) ,{})
+                return cookies[key]
+            },
+            setItem: (key, value)=>{
+                document.cookie=`${key}=${value}`;
+            }
+        }
+
+        cookieStorage.setItem('userName', 'admin');
+        cookieStorage.setItem('orderId', '100');
+        console.log(document.cookie)
+        /*const tomb=document.cookie.split(';')
+        console.log(tomb)
+        const ujtomb=tomb.map(item=>item.split('='))
+        console.log(ujtomb)*/
+        console.log('a felhasználó neve: ',cookieStorage.getItem('userName'))
+        const uname=cookieStorage.getItem('userName')
+        document.querySelector('h1').innerHTML="Szia "+uname+"!"
+        console.log('a termékazonosító: ',cookieStorage.getItem('orderId'))
+
+        //localstorage
+        localStorage.setItem('token','xyz')
+        console.log('a token: ',localStorage.getItem('token'))
+
+        //sessionstorage
+
+        sessionStorage.setItem('cardId','21212121')
+        console.log('A cardId: ',sessionStorage.getItem('cardId'))
+
+    </script>  
+</body>
+</html>

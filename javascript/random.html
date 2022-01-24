@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Véléetlenszámok</title>
+</head>
+<body>
+    <ul></ul>
+    <ol></ol>
+    <script>
+        function myRand(min,max){
+            return Math.floor(Math.random()*(max-min)+min)
+        }
+        console.log(myRand(1,10))
+
+        const myFc=(min,max)=>Math.floor(Math.random()*(max-min)+min)
+        console.log(myFc(15,25))
+
+        let szamok=[]
+        for(let i=0;i<10;i++)
+            szamok.push(myRand(1,100))
+
+        console.log(szamok)
+        let listr=''
+        for(let szam of szamok)
+            listr+=`<li>${szam}</li>`
+
+        console.log(listr)
+        document.querySelector('ul').innerHTML=listr
+
+        let ujTomb=szamok.map((szam)=>`<li>${szam}</li>`)
+        console.log(ujTomb.join(''))
+        document.querySelector('ol').innerHTML=ujTomb.join('')
+
+    </script>
+    
+</body>
+</html>

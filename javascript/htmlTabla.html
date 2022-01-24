@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Összegzés</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <thead>
+        <th>Vezetéknév</th>
+        <th>Keresztnév</th>
+        <th>Fizetés</th>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+        <tr>
+            <th colspan="2">Össz fizetés</th>
+            <th id="osszeg"></th>
+        </tr>
+        <tr>
+            <th colspan="2">Átlag fizetés</th>
+            <th id="atlag"></th>
+        </tr>
+    </tfoot>
+</table>
+
+<script>
+    let alkalmazottak = [
+        {
+        "firstName": "Nagy",
+        "lastName": "Péter",
+        "gender": "male",
+        "salary": 50000
+        },
+        {
+        "firstName": "Kiss",
+        "lastName": "Viktória",
+        "gender": "female",
+        "salary": 400000
+        },
+        {
+        "firstName": "Pál",
+        "lastName": "Marci",
+        "gender": "male",
+        "salary": 500000
+        },
+        {
+        "firstName": "Kincses",
+        "lastName": "Viola",
+        "gender": "female",
+        "salary": 300000
+        },
+        {
+        "firstName": "Német",
+        "lastName": "Tamás",
+        "gender": "male",
+        "salary": 200000
+        },
+        {
+        "firstName": "Kelemen",
+        "lastName": "Anna",
+        "gender": "female",
+        "salary": 350000
+        }
+        ]
+    document.querySelector('tbody').innerHTML=alkalmazottak.map(o => `<tr><td>${o.firstName}</td><td>${o.lastName}</td><td>${o.salary}</td></tr>`).join('')
+    let osszeg = alkalmazottak.reduce((acc, o) => acc + o.salary, 0)
+    document.getElementById('osszeg').innerHTML=alkamazottak.reduce((acc,o)=>acc+o.salary,0)
+</script>
+
+
+
+</body>
+</html>

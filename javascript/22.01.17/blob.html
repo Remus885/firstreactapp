@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blob</title>
+</head>
+<body>
+    
+    <script>
+        const show=async ()=>{
+            const response=await fetch('https://raw.githubusercontent.com/kmagdi/kavezo/master/img/americano.png')
+            if(response.ok){
+                const myBlob=await response.blob()
+                let objectUrl=URL.createObjectURL(myBlob)
+                let image=document.createElement('img')
+                image.src=objectUrl
+                document.body.appendChild(image)
+            }else 
+                console.log('Hiba')
+        }
+
+        show()
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <title>Adat bevitel</title>
+</head>
+<body>
+    <div class="container border">
+        <div class="row justify-content-center m-3">
+            <form class="form-inline">
+                <input type="text" id="nev" class="form-control" placeholder="név" >
+                <input type="number" id="ev" class="form-control" placeholder="Születési év">
+                <input id="btn" type="button" value="beír" class="btn btn-primary">
+            </form>
+            <div class="w-100">
+            <table class="table-striped">
+                <thead><th>Név</th><th>Kor</th></thead>
+                <tbody></tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        adatok=[]
+        document.getElementById('btn').addEventListener('click',()=>{
+            let nev =document.getElementById('nev').value
+            let ev=document.getElementById('ev').value
+            document.getElementById('nev').value=''
+            document.getElementById('ev').value=''
+            console.log(nev,ev);
+            adatok.push({nev:nev,ev:ev})
+            console.log(adatok);
+            document.querySelector('tbody').innerHTML+=`<tr><td>${nev}</td><td>${kor(ev)}</td></tr>`
+        })
+        function kor(ev){
+            let ma=new Date()
+            return ma.getFullYear()-ev
+
+        }
+
+    </script>
+</body>
+</html>

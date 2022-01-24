@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #kulso{
+            width: 100%;
+            height: 30px;
+            background-color: gray;
+        }
+        #belso{
+            background-color: green;
+            height: 30px;
+            width: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="kulso">
+        <div id="belso"></div>
+    </div>    
+    <button onclick="move()">Klikkelj</button>
+
+    <script>
+        const move=()=>{
+            let hossz=0;
+            let idozitoId=setInterval(()=>{
+                hossz==100 ? clearInterval(idozitoId) : document.getElementById('belso').style.width=++hossz+"%"
+            },10);
+        }        
+    </script>
+</body>
+</html>

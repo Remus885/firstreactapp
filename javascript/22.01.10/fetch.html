@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <title>fetch API</title>
+</head>
+<body>
+    <div class="container border"></div>    
+
+    <script>
+        fetch("https://api.github.com/users/Remus885")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                console.log(data.public_repos)
+                render(data)
+            })
+
+        function render(obj) {
+            let h1=document.createElement('h1')
+            h1.innerHTML=obj.login
+            h1.classList.add('text-center')
+            let img=document.createElement('img')
+            img.src=obj.avatar_url
+            let p=document.createElement('p')
+            p.innerHTML=obj.public_repos
+            p.classList.add('text-center')
+
+            document.querySelector('.container').append(h1,img,p)
+        }
+
+        
+    </script>
+</body>
+</html>

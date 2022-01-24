@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>Read JSON file</title>
+</head>
+<body>
+    <div class="container"></div>
+    
+</body>
+<script>
+
+fetch('https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json')
+  .then(response => response.json())
+  .then(data => {
+      console.log(data)
+      renderHeroes(data)
+  });
+    
+
+function renderHeroes(data){
+    //cím megjelenítése:
+    console.log(data.squadName)
+    let h1=document.createElement('h1');
+    h1.classList.add('text-center','p-3')
+    h1.innerText=data.squadName;
+    document.querySelector('.container').appendChild(h1);
+
+    console.log(data.members)
+    let arr=data.members;
+        let divRow=document.createElement('div');
+        divRow.classList.add('row')
+        document.querySelector('.container').appendChild(divRow);
+        arr.forEach(obj => {
+        document.querySelector('.row').innerHTML += 
+			`<div class="col border mr-1 shadow">
+				<h2 class="w-100">${obj.name}</h2>
+				<div>Age:${obj.age}</div>
+                <ul>Powers:
+                    ${obj.powers.reduce((s,e)=>s+"<li>"+e+"</li>","")}</ul>
+			</div>`;
+    })
+
+    //vagy:
+    let divBreak=document.createElement('div');
+    divBreak.classList.add('w-100','border','mb-2')
+    document.querySelector('.row').appendChild(divBreak)
+
+    for(let obj of arr){
+        document.querySelector('.row').innerHTML +=
+            `<div class="col border mr-1 shadow bg-light">
+                    <h2 class="w-100">${obj.name}</h2>
+                    <div>Age:${obj.age}</div>
+                    <ul>Powers:${obj.powers.reduce((s,e)=>s+"<li>"+e+"</li>","")}</ul>
+                </div>`;
+    }
+}
+
+</script>
+</html>

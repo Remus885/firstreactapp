@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Számláló</title>
+</head>
+<body>
+    <div class="container">
+        <button id="minus" onclick="minus()" >-</button>
+        <input type="text" name="" id="szam" disabled value='10'>
+        <button id="plus">+</button>
+    </div>
+    <script>
+        const minVal=0
+        const maxVal=20
+        document.getElementById('plus').addEventListener('click',plus)
+
+        function minus(){
+            let val=parseInt(document.getElementById('szam').value)
+            console.log(val)
+            if(val==minVal)
+                document.getElementById('minus').disable=true
+            else
+                document.getElementById('szam').value=val-1
+            if(val<=maxVal)
+                document.getElementById('plus').disabled=false
+        }
+
+        function plus(){
+            let val=parseInt(document.getElementById('szam').value)
+            if(val==maxVal)
+                document.getElementById('plus').disable=true
+            else
+                document.getElementById('szam').value=val+1
+            if(val>=minVal)
+            document.getElementById('minus').disable=false
+
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delegálás</title>
+</head>
+<body>
+    <h1>Események buborékolása-gelegálása</h1>
+    <ul id="linkek">
+        <li><a href="https://www.codecademy.com/learn/react-101?g_network=g&g_device=c&g_adid=518718871323&g_keyword=%2Breact.js&g_acctid=243-039-7011&g_adtype=search&g_adgroupid=126771679424&g_keywordid=kwd-302016649835&g_campaign=ROW+Language%3A+Basic+-+Broad&g_campaignid=10947274266&utm_id=t_kwd-302016649835:ag_126771679424:cp_10947274266:n_g:d_c&utm_term=%2Breact.js&utm_campaign=ROW%20Language%3A%20Basic%20-%20Broad&utm_source=google&utm_medium=paid-search&utm_content=518718871323&hsa_acc=2430397011&hsa_cam=10947274266&hsa_grp=126771679424&hsa_ad=518718871323&hsa_src=g&hsa_tgt=kwd-302016649835&hsa_kw=%2Breact.js&hsa_mt=b&hsa_net=adwords&hsa_ver=3&gclid=Cj0KCQiA2sqOBhCGARIsAPuPK0jf68epSv9a1-B090FxRX9HTNDkpEkfxfcZ85882m4viTAn19zl46YaAo6eEALw_wcB">React</a></li>
+        <li><a href="https://nodejs.org/en/">Node.js</a></li>
+        <li><a href="https://docs.oracle.com/javase/8/docs/api/">ArrayList</a></li>
+    </ul>
+        <script>
+            document.getElementById("linkek").addEventListener("click",(e)=>{
+                //e.preventDefault();
+                //console.log(e.target.tagName);
+                if(e.target.tagName==="A" && e.shiftKey){
+                    e.preventDefault();
+                    console.log(e.target.href);
+                }
+            })
+        </script>
+</body>
+</html>

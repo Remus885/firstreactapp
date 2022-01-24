@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <title>fetch API</title>
+</head>
+<body>
+    <div class="container border"></div>
+    
+
+    <script>
+        /*fetch("https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                render(data)
+            })*/
+
+        const getData=async ()=> {
+            const response=await fetch('https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json')
+            //console.log(response)
+            if(response.ok){
+            const data=await response.json();
+            //console.log(data)
+            render(data)
+            }else
+            document.querySelector('.container').innerHTML="Hiba: Az erőforrás nem elérhető!"            
+        }
+        getData()
+
+        function render(data){
+            let h1=document.createElement('h1');
+            h1.innerHTML=data.squadName
+            h1.classList.add('text-center', 'p-3')
+            document.querySelector('.container').append(h1)
+
+            let arr=data.members
+            let divRow=document.createElement('div')
+            divRow.classList.add('row')
+            document.querySelector('.container').appendChild(divRow)
+           /* arr.forEach(item => {
+                document.querySelector('.row').innerHTML+=`
+                    <div class="col border shadow mr-1">
+                        <h2>${item.name}</h2>
+                        <div>Age: ${item.age}</div>
+                        <ul>Powers:
+                            ${item.powers.reduce((acc, elem)=>acc+"<li>"+elem+"</li>", "")}    
+                        </ul>   
+                    </div>
+                `
+            });*/
+            //Másik módszer
+            for(let o of arr){
+                document.querySelector('.row').innerHTML+=`
+                    <div class="col border shadow mr-1">
+                        <h2>${o.name}</h2>
+                        <div>Age: ${o.age}</div>
+                        <ul>Powers:
+                            ${o.powers.map((elem)=>"<li>"+elem+"</li>").join('')}    
+                        </ul>   
+                    </div>
+                `
+            }
+        }
+        
+    </script>
+</body>
+</html>
